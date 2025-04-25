@@ -72,7 +72,7 @@ macro_##NAME: macro_##NAME { \
     macros {
         compatible = "zmk,behavior-macro";
         MACRO(singlequote_usintl, &macro_tap &kp SINGLE_QUOTE &kp SPACE, 10)
-        MACRO(doublequote_usintl, &macro_tap &kp DOUBLE_QUOTE &kp SPACE, 10)
+        MACRO(doublequote_usintl, &macro_tap &kp DOUBLE_QUOTES &kp SPACE, 10)
         MACRO(caret_usintl, &macro_tap &kp CARET &kp SPACE, 10)
         MACRO(tilde_usintl, &macro_tap &kp TILDE &kp SPACE, 10)
         MACRO(grave_usintl, &macro_tap &kp GRAVE &kp SPACE, 10)
