@@ -62,9 +62,20 @@
     continue-list = <UNDERSCORE MINUS BSPC LSHFT RSHFT>;
 };
 
+#define MACRO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
+macro_##NAME: macro_##NAME { \
+    timeout-ms = <TIMEOUT>; \
+    binding-cells = <0>; \
+    bindings = <BINDINGS>; \
+};
 / {
     macros {
-
+        compatible = "zmk,behavior-macro";
+        MACRO(singlequote_usintl, &macro_tap &kp SINGLE_QUOTE &kp SPACE, 10)
+        MACRO(doublequote_usintl, &macro_tap &kp DOUBLE_QUOTE &kp SPACE, 10)
+        MACRO(caret_usintl, &macro_tap &kp CARET &kp SPACE, 10)
+        MACRO(tilde_usintl, &macro_tap &kp TILDE &kp SPACE, 10)
+        MACRO(grave_usintl, &macro_tap &kp GRAVE &kp SPACE, 10)
     };
 };
 
@@ -82,8 +93,10 @@ combo_##NAME { \
         COMBO(capslock, &kp CAPSLOCK, 0 9, 75)
 
         // In the number cluster
-        COMBO(singlequote, &kp SINGLE_QUOTE, 6 7, 50)
-        COMBO(doublequote, &kp DOUBLE_QUOTES, 7 8, 50)
+        //COMBO(singlequote, &kp SINGLE_QUOTE, 6 7, 50)
+        COMBO(singlequote, &macro_singlequote_usintl, 6 7, 50)
+        //COMBO(doublequote, &kp DOUBLE_QUOTES, 7 8, 50)
+        COMBO(doublequote, &macro_doublequote_usintl, 7 8, 50)
         COMBO(minus, &kp MINUS, 17 18, 50)
         COMBO(plus, &kp PLUS, 16 17, 50)
         COMBO(equal, &kp EQUAL, 27 28, 50)
@@ -262,8 +275,8 @@ combo_##NAME { \
             label = "NAV";
 
             bindings = <
-             &trans      &trans      &kp RA(E)   &trans      &trans                               &trans      &kp RA(U)   &trans      &kp RA(O)   &trans
-             &kp RA(A)   &kp RA(S)   &trans      &sk LSHIFT  &trans                               &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans
+             &trans      &trans      &kp RA(N5)  &trans      &trans                               &trans      &kp RA(Y)   &trans      &kp RA(P)   &trans
+             &kp RA(Q)   &kp RA(S)   &trans      &sk LSHIFT  &trans                               &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans
              &trans      &trans      &trans      &trans      &trans                               &trans      &trans      &trans      &trans      &trans
                                                              &trans       &trans      &trans      &trans
             >;
