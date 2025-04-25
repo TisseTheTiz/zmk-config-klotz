@@ -65,7 +65,7 @@
 #define MACRO(NAME, BINDINGS, TIMEOUT) \
 macro_##NAME: macro_##NAME { \
     timeout-ms = <TIMEOUT>; \
-    binding-cells = <0>; \
+    #binding-cells = <0>; \
     bindings = <BINDINGS>; \
 };
 / {
