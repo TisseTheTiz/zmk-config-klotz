@@ -63,7 +63,7 @@
 };
 
 #define MACRO(NAME, BINDINGS, WAITTIME, TAPTIME) \
-##NAME: ##NAME { \
+NAME: NAME { \
     compatible = "zmk,behavior-macro"; \
     #binding-cells = <0>; \
     wait-ms = <WAITTIME>; \
