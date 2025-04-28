@@ -222,7 +222,7 @@ combo_##NAME { \
             ├───────────┼───────────┼───────────┼───────────┼───────────┤│          ││          │├───────────┼───────────┼───────────┼───────────┼───────────┤
             │     =     │     +     │     |     │     &     │     *     │╰──────────╯╰──────────╯│           │           │           │           │           │
             ╰───────────┴───────────┴───────────┴───────────┼───────────┼───────────╮╭───────────┼───────────┼───────────┴───────────┴───────────┴───────────╯
-                                                            │     _     │     -     ││           │           │
+                                                            │     -     │     _     ││           │           │
                                                             ╰───────────┴───────────╯╰───────────┴───────────╯ */
         symbols {
             label = "SYM";
@@ -231,7 +231,7 @@ combo_##NAME { \
              &tilde_usi  &grave_usi  &squote_usi &dquote_usi &caret_usi                           &trans      &trans      &trans      &trans      &trans
              &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT                            &trans      &trans      &trans      &trans      &trans
              &kp EQUAL   &kp PLUS    &kp PIPE    &kp AMPS    &kp STAR                             &trans      &trans      &trans      &trans      &trans
-                                                             &kp UNDER    &kp MINUS   &trans      &trans
+                                                             &kp MINUS    &kp UNDER   &trans      &trans
             >;
             sensor-bindings = <&inc_dec_kp MINUS PLUS &inc_dec_kp RIGHT LEFT>;
         };
