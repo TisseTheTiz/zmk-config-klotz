@@ -63,7 +63,7 @@
 };
 
 #define MACRO(NAME, BINDINGS, WAITTIME, TAPTIME) \
-macro_##NAME: macro_##NAME { \
+##NAME: ##NAME { \
     compatible = "zmk,behavior-macro"; \
     #binding-cells = <0>; \
     wait-ms = <WAITTIME>; \
@@ -72,11 +72,11 @@ macro_##NAME: macro_##NAME { \
 };
 / {
     macros {
-        MACRO(singlequote_usintl, &macro_tap &kp SINGLE_QUOTE &kp SPACE, 10, 10)
-        MACRO(doublequote_usintl, &macro_tap &kp DOUBLE_QUOTES &kp SPACE, 10, 10)
-        MACRO(caret_usintl, &macro_tap &kp CARET &kp SPACE, 10, 10)
-        MACRO(tilde_usintl, &macro_tap &kp TILDE &kp SPACE, 10, 10)
-        MACRO(grave_usintl, &macro_tap &kp GRAVE &kp SPACE, 10, 10)
+        MACRO(squote_usi, &macro_tap &kp SINGLE_QUOTE &kp SPACE, 10, 10)
+        MACRO(dquote_usi, &macro_tap &kp DOUBLE_QUOTES &kp SPACE, 10, 10)
+        MACRO(caret_usi, &macro_tap &kp CARET &kp SPACE, 10, 10)
+        MACRO(tilde_usi, &macro_tap &kp TILDE &kp SPACE, 10, 10)
+        MACRO(grave_usi, &macro_tap &kp GRAVE &kp SPACE, 10, 10)
     };
 };
 
@@ -95,9 +95,9 @@ combo_##NAME { \
 
         // In the number cluster
         //COMBO(singlequote, &kp SINGLE_QUOTE, 6 7, 50)
-        COMBO(singlequote, &macro_singlequote_usintl, 6 7, 50)
+        COMBO(singlequote, &squote_usi, 6 7, 50)
         //COMBO(doublequote, &kp DOUBLE_QUOTES, 7 8, 50)
-        COMBO(doublequote, &macro_doublequote_usintl, 7 8, 50)
+        COMBO(doublequote, &dquote_usi, 7 8, 50)
         COMBO(minus, &kp MINUS, 17 18, 50)
         COMBO(plus, &kp PLUS, 16 17, 50)
         COMBO(equal, &kp EQUAL, 27 28, 50)
@@ -228,7 +228,7 @@ combo_##NAME { \
             label = "SYM";
 
             bindings = <
-             &kp TILDE   &kp GRAVE   &trans      &kp CARET   &trans                               &trans      &trans      &trans      &trans      &trans
+             &tilde_usi  &grave_usi  &trans      &caret_usi  &trans                               &trans      &trans      &trans      &trans      &trans
              &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT                            &trans      &trans      &trans      &trans      &trans
              &trans      &trans      &kp PIPE    &kp AMPS    &trans                               &trans      &trans      &trans      &trans      &trans
                                                              &trans       &trans      &trans      &trans
