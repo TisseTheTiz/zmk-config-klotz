@@ -25,15 +25,16 @@
                        │ 30 │ 31 │  │ 32 │ 33 │
                        ╰────┴────╯  ╰────┴────╯ */
 
-#include "conditional_layers.h"
-#include "macros.h"
-#include "combos.h"
-#include "behaviors.h"
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/backlight.h>
+
+#include "conditional_layers.h"
+#include "macros.h"
+#include "combos.h"
+#include "behaviors.h"
 
 #define TAPPING_TERM_TIME 200
 #define QUICK_TAP_TIME 200

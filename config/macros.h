@@ -6,6 +6,7 @@ NAME: NAME { \
     tap-ms = <TAPTIME>; \
     bindings = <BINDINGS>; \
 };
+
 / {
     macros {
         MACRO(squote_usi, &macro_tap &kp SINGLE_QUOTE &kp SPACE, 10, 10)

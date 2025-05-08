@@ -4,6 +4,7 @@ combo_##NAME { \
     bindings = <BINDINGS>; \
     key-positions = <KEYPOS>; \
 };
+
 / {
     combos {
         compatible = "zmk,combos";
