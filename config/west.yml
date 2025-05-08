@@ -4,6 +4,7 @@ manifest:
       url-base: https://github.com/zmkfirmware
   projects:
     - name: zmk
+      submodules: true
       remote: zmkfirmware
       revision: main
       import: app/west.yml
