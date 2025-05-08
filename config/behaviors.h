@@ -1,3 +1,7 @@
+#define TAPPING_TERM_TIME 200
+#define QUICK_TAP_TIME 200
+#define IDLE_MOD_TIME 125
+
 / {
     behaviors {
         colsem: colon_semicolon {
