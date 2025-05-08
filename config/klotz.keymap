@@ -25,6 +25,10 @@
                        │ 30 │ 31 │  │ 32 │ 33 │
                        ╰────┴────╯  ╰────┴────╯ */
 
+#include "conditional_layers.h"
+#include "macros.h"
+#include "combos.h"
+#include "behaviors.h"
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -42,148 +46,11 @@
 #define NAV 3
 #define ADJ 4
 
-/ {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <4>;
-        };
-    };
-};
-
 // LAYER-TAP KEYS ├────────────────────────────────────────────┐
 #define NUM_ENT &my_lt NUM ENTER
 #define SYM_SPC &my_lt SYM SPACE
 #define NAV_TAB &my_lt NAV TAB
 #define NAV_BSP &my_lt_bspc NAV 0
-
-&caps_word {
-    continue-list = <UNDERSCORE MINUS BSPC LSHFT RSHFT>;
-};
-
-#define MACRO(NAME, BINDINGS, WAITTIME, TAPTIME) \
-NAME: NAME { \
-    compatible = "zmk,behavior-macro"; \
-    #binding-cells = <0>; \
-    wait-ms = <WAITTIME>; \
-    tap-ms = <TAPTIME>; \
-    bindings = <BINDINGS>; \
-};
-/ {
-    macros {
-        MACRO(squote_usi, &macro_tap &kp SINGLE_QUOTE &kp SPACE, 10, 10)
-        MACRO(dquote_usi, &macro_tap &kp DOUBLE_QUOTES &kp SPACE, 10, 10)
-        MACRO(caret_usi, &macro_tap &kp CARET &kp SPACE, 10, 10)
-        MACRO(tilde_usi, &macro_tap &kp TILDE &kp SPACE, 10, 10)
-        MACRO(grave_usi, &macro_tap &kp GRAVE &kp SPACE, 10, 10)
-        MACRO(larrow, &macro_tap &kp LESS_THAN &kp MINUS, 10, 10)
-        MACRO(rarrow, &macro_tap &kp MINUS &kp GREATER_THAN, 10, 10)
-    };
-};
-
-#define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
-combo_##NAME { \
-    timeout-ms = <TIMEOUT>; \
-    bindings = <BINDINGS>; \
-    key-positions = <KEYPOS>; \
-};
-/ {
-    combos {
-        compatible = "zmk,combos";
-        COMBO(esc, &kp ESC, 13 16, 75)
-        COMBO(caps, &caps_word, 10 19, 75)
-        COMBO(capslock, &kp CAPSLOCK, 0 9, 75)
-
-        // In the number cluster
-        //COMBO(singlequote, &kp SINGLE_QUOTE, 6 7, 50)
-        COMBO(singlequote, &squote_usi, 6 7, 50)
-        //COMBO(doublequote, &kp DOUBLE_QUOTES, 7 8, 50)
-        COMBO(doublequote, &dquote_usi, 7 8, 50)
-        COMBO(minus, &kp MINUS, 17 18, 50)
-        COMBO(plus, &kp PLUS, 16 17, 50)
-        COMBO(equal, &kp EQUAL, 27 28, 50)
-        COMBO(star, &kp ASTERISK, 26 27, 50)
-        COMBO(underscore, &kp UNDERSCORE, 16 17 18, 50)
-        COMBO(symlayertog, &tog 1, 32 33, 50)
-    };
-};
-
-/ {
-    behaviors {
-        colsem: colon_semicolon {
-            compatible = "zmk,behavior-mod-morph";
-            label = "inverted colon/semicolon";
-            #binding-cells = <0>;
-            bindings = <&kp COLON>, <&kp SEMICOLON>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        bspc_del: backspace_delete {
-            compatible = "zmk,behavior-mod-morph";
-            label = "backspace and shift delete";
-            #binding-cells = <0>;
-            bindings = <&kp BACKSPACE>, <&kp DELETE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        hl: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            label = "homerow mods left";
-            #binding-cells = <2>;
-            /* flavor = "tap-preferred"; */
-            flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_TIME>;
-            quick-tap-ms = <QUICK_TAP_TIME>;
-            require-prior-idle-ms = <IDLE_MOD_TIME>;
-            // global-quick-tap;
-            bindings = <&kp>, <&kp>;
-            // opposite side hand keys
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 32 33>;
-        };
-
-        hr: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            label = "homerow mods right";
-            #binding-cells = <2>;
-            /* flavor = "tap-preferred"; */
-            flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_TIME>;
-            quick-tap-ms = <QUICK_TAP_TIME>;
-            require-prior-idle-ms = <IDLE_MOD_TIME>;
-            // global-quick-tap;
-            bindings = <&kp>, <&kp>;
-            // opposite side hand keys
-            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31>;
-        };
-
-        my_lt: my_layer_taps {
-            compatible = "zmk,behavior-hold-tap";
-            label = "my layer taps";
-            #binding-cells = <2>;
-            // flavor = "tap-preferred";
-            flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_TIME>;
-            quick-tap-ms = <QUICK_TAP_TIME>;
-            require-prior-idle-ms = <IDLE_MOD_TIME>;
-            // global-quick-tap;
-            bindings = <&mo>, <&kp>;
-            // non-thumb keys
-            /* hold-trigger-key-positions = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23>; */
-        };
-
-        my_lt_bspc: my_layer_tap_bspc_del {
-            compatible = "zmk,behavior-hold-tap";
-            label = "my layer taps backspace";
-            #binding-cells = <2>;
-            tapping-term-ms = <TAPPING_TERM_TIME>;
-            quick-tap-ms = <QUICK_TAP_TIME>;
-            require-prior-idle-ms = <IDLE_MOD_TIME>;
-            bindings = <&mo>, <&bspc_del>;
-        };
-    };
-};
-
 
 / {
 
