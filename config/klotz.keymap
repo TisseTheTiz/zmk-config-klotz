@@ -32,23 +32,7 @@
 #include <dt-bindings/zmk/backlight.h>
 
 #include "headers/keypos/klotz.h"
-#include "headers/conditional_layers.h"
-#include "headers/macros.h"
-#include "headers/combos.h"
-#include "headers/behaviors.h"
-
-// LAYERS ├────────────────────────────────────────────┐
-#define BAS 0
-#define SYM 1
-#define NUM 2
-#define NAV 3
-#define ADJ 4
-
-// LAYER-TAP KEYS ├────────────────────────────────────────────┐
-#define NUM_ENT &my_lt NUM ENTER
-#define SYM_SPC &my_lt SYM SPACE
-#define NAV_TAB &my_lt NAV TAB
-#define NAV_BSP &my_lt_bspc NAV 0
+#include "headers/common_headers.h"
 
 / {
 

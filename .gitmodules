@@ -1,3 +1,0 @@
-[submodule "config/headers"]
-	path = config/headers
-	url = https://github.com/TisseTheTiz/zmk-config-headers
