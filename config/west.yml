@@ -2,11 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: TisseTheTiz
+      url-base: https://github.com/TisseTheTiz
   projects:
     - name: zmk
-      submodules: true
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    - name: zmk-config-headers
+      url-base: zmk-config-headers
+      path: headers
   self:
     path: config
