@@ -9,10 +9,9 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    #- name: zmk-config-headers
-    #  repo-path: zmk-config-headers
-    #  remote: TisseTheTiz
-    #  path: headers
+    - name: config-headers
+      repo-path: zmk-config-headers
+      remote: TisseTheTiz
+      path: config/headers
   self:
     path: config
-    submodules: true
