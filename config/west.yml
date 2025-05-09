@@ -12,6 +12,7 @@ manifest:
     - name: config-headers
       repo-path: zmk-config-headers
       remote: TisseTheTiz
+      revision: main
       path: config/headers
   self:
     path: config
