@@ -10,7 +10,7 @@ manifest:
       revision: main
       import: app/west.yml
     - name: zmk-config-headers
-      url-base: zmk-config-headers
+      repo-path: zmk-config-headers
       path: headers
   self:
     path: config
